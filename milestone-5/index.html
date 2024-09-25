@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Shareable Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>Shareable Resume Builder</h1>
+
+    <form id="resumeForm">
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username" required><br>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required><br>
+
+            <label for="profileImage">Profile Image:</label>
+            <input type="file" id="profileImage" accept="image/*"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Education</legend>
+            <textarea id="education" placeholder="Enter your education details" required></textarea><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Experience</legend>
+            <textarea id="experience" placeholder="Enter your work experience" required></textarea><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Skills</legend>
+            <textarea id="skills" placeholder="Enter your skills" required></textarea><br>
+        </fieldset>
+
+        <button type="submit">Generate Resume Below</button>
+    </form>
+
+    <br>
+
+    <div id="resumeOutput">
+        <!-- Resume will be displayed here dynamically -->
+    </div>
+
+    <button id="downloadBtn">Download Resume as PDF</button>
+
+    <script>
+        let profileImageUrl = "";
+
+        // Handle image upload
+        document.getElementById("profileImage").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    profileImageUrl = reader.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle form submission to generate the resume dynamically
+        document.getElementById("resumeForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const education = document.getElementById("education").value;
+            const experience = document.getElementById("experience").value;
+            const skills = document.getElementById("skills").value;
+
+            const resumeHTML = `
+                <h2>Resume of ${name}</h2>
+                ${profileImageUrl ? `<img src="${profileImageUrl}" alt="Profile Image" width="100" height="100">` : ''}
+                <p><strong>Username:</strong> ${username}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <h3>Education</h3>
+                <p>${education}</p>
+                <h3>Experience</h3>
+                <p>${experience}</p>
+                <h3>Skills</h3>
+                <p>${skills}</p>
+            `;
+
+            document.getElementById("resumeOutput").innerHTML = resumeHTML;
+        });
+
+        // Handle PDF download
+        document.getElementById("downloadBtn").addEventListener("click", function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const resumeText = document.getElementById("resumeOutput").innerText;
+
+            doc.setFontSize(12);
+            doc.text(resumeText, 10, 10);
+
+            if (profileImageUrl) {
+                doc.addImage(profileImageUrl, 'JPEG', 10, 30, 50, 50);
+            }
+
+            doc.save("resume.pdf");
+        });
+    </script>
+</body>
+</html>

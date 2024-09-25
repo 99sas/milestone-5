@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fce4ec;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #9c27b0;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+/* Form Styles */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #fce4ec;
+}
+
+legend {
+    font-weight: bold;
+    color: #9c27b0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button[type="submit"], 
+#downloadBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #e91e63;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+button[type="submit"]:hover, 
+#downloadBtn:hover {
+    background-color: #c2185b;
+}
+
+/* Resume Output Styles */
+#resumeOutput {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#resumeOutput h2 {
+    color: #9c27b0;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+#resumeOutput img {
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+#resumeOutput p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+#resumeOutput h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
